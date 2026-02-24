@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h1>Ma liste de tâches</h1>
+
+  <div class="list-group">
+    <% @tasks.each do |t| %>
+      <div class="d-flex align-items-center mb-3">
+
+        <%= link_to task_path(t, task: { completed: !t.completed }), data: { turbo_method: :patch }, class: "text-decoration-none" do %>
+          <% if t.completed %>
+            <i class="fa-solid fa-square-check text-success me-2"></i>
+          <% else %>
+            <i class="fa-regular fa-square text-muted me-2"></i>
+          <% end %>
+        <% end %>
+
+        <%= link_to t.title, task_path(t), class: "text-decoration-none text-dark fs-5 flex-grow-1 #{'text-decoration-line-through text-muted' if t.completed}" %>
+
+        <%= link_to task_path(t), data: { turbo_method: :delete, turbo_confirm: "Supprimer ?" }, class: "ms-3" do %>
+          <i class="fa-solid fa-trash-can text-danger"></i>
+        <% end %>
+
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+  <%= link_to "Ajouter une tâche", new_task_path, class: "btn btn-primary" %>
+</div>

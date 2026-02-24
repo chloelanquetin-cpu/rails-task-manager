@@ -1,0 +1,17 @@
+<h1>Ajouter une nouvelle tâche</h1>
+
+<%= form_with model: @task do |f| %>
+  <div>
+    <%= f.label :title, "Titre" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :details, "Détails" %>
+    <%= f.text_area :details %>
+  </div>
+
+  <%= f.submit "Créer la tâche" %>
+<% end %>
+
+<%= link_to "Annuler", tasks_path %>
